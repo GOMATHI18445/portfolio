@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOMATHI - Civil Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #666;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+            font-weight: 400;
+            font-size: 1rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--secondary-color);
+            background: rgba(52, 152, 219, 0.1);
+
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* ===== HOME PAGE ===== */
+        #home {
+            padding-top: 120px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill="rgba(255,255,255,0.1)" d="M0,500Q250,400,500,500Q750,600,1000,500L1000,1000L0,1000Z"/></svg>');
+           background-size: cover;
+            background-position: bottom;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .hero-buttons .btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            min-width: 150px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        /* ===== PROFILE PAGE ===== */
+        #profile {
+            padding: 120px 0 80px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 140px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .contact-details {
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .contact-item i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .profile-main {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-section {
+            margin-bottom: 3rem;
+        }
+
+        .profile-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .profile-objective {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        /* ===== EDUCATION PAGE ===== */
+        #education {
+            padding: 120px 0 80px;
+            background: #f5f7fa;
+        }
+
+        .education-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 60px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            margin-left: 60px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .timeline-content {
+            width: calc(50% - 60px);
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .education-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-header h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-period {
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        /* ===== SKILLS PAGE ===== */
+        #skills {
+            padding: 120px 0 80px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .skill-level {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--light-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* ===== PROJECTS PAGE ===== */
+        #projects {
+            padding: 120px 0 80px;
+            background: #f5f7fa;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== PAPERS PAGE ===== */
+        #papers {
+            padding: 120px 0 80px;
+        }
+
+        .papers-list {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .paper-item {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .paper-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 2rem;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .paper-title {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .paper-venue {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .paper-description {
+            color: var(--text-light);
+        }
+
+        /* ===== EXPERIENCE PAGE ===== */
+        #experience {
+            padding: 120px 0 80px;
+            background: #f5f7fa;
+        }
+
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            background: white;
+            border: 2px solid var(--light-color);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .experience-title {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: var(--text-light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                position: static;
+            }
+            
+            .education-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+                width: calc(100% - 60px);
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-stats {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-content {
+                padding: 2rem 0;
+            }
+            
+            .page {
+                padding: 100px 0 40px;
+            }
+            
+            .profile-main {
+                padding: 2rem 1.5rem;
+            }
+            
+            .paper-item {
+                padding: 1.5rem;
+                padding-left: 3rem;
+            }
+            
+            .paper-icon {
+                left: 1rem;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            header, footer, .btn, .mobile-toggle {
+                display: none !important;
+            }
+            
+            .page {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: white !important;
+            }
+            
+            body {
+                background: white !important;
+            }
+            
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            
+            .page.active {
+                display: block !important;
+            }
+        }
+        /* Profile Picture Styling */
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-img i {
+    font-size: 4rem;
+    color: white;
+    z-index: 1;
+}
+
+/* Additional Profile Styles */
+.profile-section h3 i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+.contact-details .contact-item i.fab {
+    font-size: 1.1rem;
+}
+
+.skills-list {
+    margin-top: 1rem;
+}
+
+.skill-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.skill-item {
+    flex: 1;
+}
+
+.skill-item .skill-name {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.interest-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    background: var(--light-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.interest-item:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.interest-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.interest-item:hover i {
+    color: white;
+}
+
+.interest-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.strengths-list {
+    margin-top: 1rem;
+}
+
+.strength-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.strength-item:hover {
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.strength-item i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.strength-item span {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.certifications {
+    margin-top: 2rem;
+}
+
+.certifications .tags {
+    margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skill-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .interests-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Download Button Styling */
+.btn-download {
+    background: var(--accent-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-download:hover {
+    background: #c0392b;
+}
+
+.btn-download i {
+    margin-right: 8px;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 250px;
+        max-width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>GOMATHI</h1>
+                    <span>CIVIL ENGINEER</span>
+                </div>
+                
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a href="#" class="nav-link" data-page="education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                        <li><a href="#" class="nav-link" data-page="skills"><i class="fas fa-code"></i> Skills</a></li>
+                        <li><a href="#" class="nav-link" data-page="projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                        <li><a href="#" class="nav-link" data-page="papers"><i class="fas fa-file-alt"></i> Papers</a></li>
+                        <li><a href="#" class="nav-link" data-page="experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+<section id="home" class="page active">
+    <div class="container">
+        <div class="hero-content">
+            <!-- Add your profile picture here if needed -->
+            <h1>GOMATHI</h1>
+            <h2>CIVIL ENGINEER</h2>
+            <p>Passionate about sustainable construction, project management, and innovative building technologies. Seeking challenging opportunities to apply technical skills and contribute to meaningful projects.</p>
+            
+            <!-- REMOVE THIS DUPLICATE HEADER SECTION -->
+            <!-- <header>
+                <div class="container">
+                    <h1>Your Name</h1>
+                    <p>Full Stack Developer | Web Designer</p>
+                </div>
+            </header> -->
+            
+            <div class="hero-buttons">
+                <a href="#" class="btn nav-link" data-page="profile">View Full Profile</a>
+                <a href="#" class="btn btn-outline nav-link" data-page="projects">View Projects</a>
+                <a href="resume.pdf" class="btn btn-download" download="Gomathi_Civil_Engineer_Resume">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <h3>7.28</h3>
+                    <p>CGPA</p>
+                </div>
+                <div class="stat-item">
+                    <h3>86%</h3>
+                    <p>HSC Score</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2</h3>
+                    <p>Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2027</h3>
+                    <p>Graduation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Profile Page -->
+<section id="profile" class="page">
+    <div class="container">
+        <h2 class="section-title">Profile</h2>
+        
+        <div class="profile-grid">
+            <div class="profile-sidebar">
+                <!-- Profile Picture with fallback icon -->
+                <div class="profile-img">
+                    <img src="profile.jpg" alt="Gomathi - Civil Engineer" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-user\'></i>';">
+                </div>
+                
+                <div class="contact-details">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>6374971210</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>gomathigandhi2005@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Erode, Tamil Nadu</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/GOMATHI18445</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/gomathi</span>
+                    </div>
+                </div>
+                
+                <div class="languages">
+                    <h3>Languages</h3>
+                    <div class="tags">
+                        <span class="tag">English (Professional)</span>
+                        <span class="tag">Tamil (Native)</span>
+                    </div>
+                </div>
+                
+                <div class="memberships">
+                    <h3>Memberships</h3>
+                    <div class="tags">
+                        <span class="tag">American Concrete Institute (ACI)</span>
+                        <span class="tag">Indian Society for Technical Education (ISTE)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="profile-main">
+                <div class="profile-section">
+                    <h3><i class="fas fa-bullseye"></i> Career Objective</h3>
+                    <p class="profile-objective">
+                        To work in an environment offering challenging career opportunities where I can apply and enhance my skills for solving diverse technical positions in civil engineering. Passionate about sustainable construction and innovative building technologies. Seeking a position that allows me to contribute to sustainable infrastructure development while growing professionally in a dynamic team.
+                    </p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3><i class="fas fa-user-check"></i> Professional Summary</h3>
+                    <p class="profile-objective">
+                        Dedicated Civil Engineering student with a strong academic background and hands-on experience in various engineering software and technologies. Proven ability to work effectively in teams, manage time efficiently, and solve complex problems. Committed to implementing sustainable construction practices and staying updated with the latest industry innovations.
+                    </p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    
+
+                        </div>
+                        <div class="tags">
+                            <span class="tag"><i class="fas fa-check-circle"></i> Leadership</span>
+                            <span class="tag"><i class="fas fa-check-circle"></i> Punctuality</span>
+                            <span class="tag"><i class="fas fa-check-circle"></i> Adaptability</span>
+                            <span class="tag"><i class="fas fa-check-circle"></i> Critical Thinking</span>
+                            <span class="tag"><i class="fas fa-check-circle"></i> Attention to Detail</span>
+                            <span class="tag"><i class="fas fa-check-circle"></i> Decision Making</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-section">
+                    <h3><i class="fas fa-users"></i> Areas of Interest</h3>
+                    <div class="interests-grid">
+                        <div class="interest-item">
+                            <i class="fas fa-hard-hat"></i>
+                            <span>Project Management</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-mountain"></i>
+                            <span>Geotechnology</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>Surveying</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-cubes"></i>
+                            <span>Concrete Technology</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>Sustainable Construction</span>
+                        </div>
+                        
+                        <div class="interest-item">
+                            <i class="fas fa-solar-panel"></i>
+                            <span>Green Building Technology</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Education Page -->
+    <section id="education" class="page">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="education-header">
+                            <span class="education-period">2023 - 2027</span>
+                            <h3>Bachelor of Civil Engineering</h3>
+                            <h4>Kongu Engineering College, Perundurai</h4>
+                        </div>
+                        <div class="education-details">
+                            <p><strong>CGPA:</strong> 7.28/10</p>
+                            <p><strong>Relevant Coursework:</strong> Structural Analysis, Concrete Technology, Surveying, Geotechnical Engineering, Project Management, Environmental Engineering</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="education-header">
+                            <span class="education-period">2023</span>
+                            <h3>Higher Secondary Education</h3>
+                            <h4>Government Higher Secondary School, Thuduppathi</h4>
+                        </div>
+                        <div class="education-details">
+                            <p><strong>Percentage:</strong> 86%</p>
+                            <p><strong>Stream:</strong> Science with Mathematics</p>
+                            <p><strong>Board:</strong> Tamil Nadu State Board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Page -->
+    <section id="skills" class="page">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-drafting-compass"></i> Civil Engineering Software</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">AutoCAD</span>
+                            
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Revit</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">SketchUp</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">ETABS</span>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Skills</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">C</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">C++</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Python</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Data Structures</span>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Technical Skills</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Project Management</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Surveying</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Concrete Technology</span>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Geotechnology</span>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="page">
+        <div class="container">
+            <h2 class="section-title">Projects & Achievements</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>IoT-Based Moisture Content Detector for Concrete Curing</h3>
+                        <div class="project-meta">IDEATHON 2K25 | Kongu Engineering College</div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Developed a smart system for monitoring moisture content during concrete curing process using IoT technology. The system provides real-time data and alerts for optimal curing conditions.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">Sensors</span>
+                            <span class="tech-tag">Concrete Technology</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Chemical Components Using Snake & Ladder Game</h3>
+                        <div class="project-meta">SIH 2024 | Kongu Engineering College</div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Created an educational game to learn chemical components through interactive snake and ladder gameplay. The project combines entertainment with education for better learning outcomes.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Educational Game</span>
+                            <span class="tech-tag">Chemistry</span>
+                            <span class="tech-tag">Interactive Learning</span>
+                            <span class="tech-tag">Game Development</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Award: Second Prize in Leaf Printing</h3>
+                        <div class="project-meta">Skills and Thrills 2K25 | Kongu Engineering College</div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Won second prize in Leaf Printing competition, demonstrating creativity and innovation in sustainable art techniques. The competition focused on eco-friendly artistic expressions.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Art</span>
+                            <span class="tech-tag">Sustainability</span>
+                            <span class="tech-tag">Creativity</span>
+                            <span class="tech-tag">Eco-friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Papers Page -->
+    <section id="papers" class="page">
+        <div class="container">
+            <h2 class="section-title">Research Papers Presented</h2>
+            
+            <div class="papers-list">
+                <div class="paper-item">
+                    <div class="paper-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="paper-title">Sustainable Construction Materials</h3>
+                    <span class="paper-venue">Presented at Kongu Engineering College, Perundurai</span>
+                    <p class="paper-description">
+                        Presented innovative approaches to the use of sustainable and eco-friendly construction materials such as fly ash and recycled aggregate to minimize environmental impact and enhance durability. The paper focused on modern construction techniques that reduce carbon footprint while maintaining structural integrity.
+                    </p>
+                </div>
+                
+                <div class="paper-item">
+                    <div class="paper-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3 class="paper-title">Innovative Solar Buildings</h3>
+                    <span class="paper-venue">Presented at Kongu Engineering College, Perundurai</span>
+                    <p class="paper-description">
+                        Presented design concepts for integrating solar energy in buildings to enhance energy efficiency and sustainability. The paper explored architectural designs that maximize solar energy utilization while maintaining aesthetic appeal and functionality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Page -->
+    <section id="experience" class="page">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-tabs">
+                <button class="tab-btn active" data-tab="site-visits">Site Visits</button>
+                <button class="tab-btn" data-tab="workshops">Workshops</button>
+                <button class="tab-btn" data-tab="training">Training</button>
+            </div>
+            
+            <div id="site-visits" class="tab-content active">
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-train"></i>
+                            </div>
+                            <div>
+                                <h3 class="experience-title">Podanur Railway Station & Signalling Department</h3>
+                                <span class="experience-date">Coimbatore | 01.08.2025</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Visited Podanur Railway Station and Signalling Department to study railway infrastructure, signalling systems, and large-scale project management. Gained insights into transportation engineering and safety systems.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div>
+                                <h3 class="experience-title">Aliyar Dam</h3>
+                                <span class="experience-date">Pollachi | 13.08.2025</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Visited Aliyar Dam to study dam construction, hydraulic engineering, and water management systems. Learned about irrigation systems, flood control, and hydroelectric power generation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="workshops" class="tab-content">
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-first-aid"></i>
+                            </div>
+                            <div>
+                                <h3 class="experience-title">Workshop on First-Aid Measures</h3>
+                                <span class="experience-date">Kongu Engineering College, Perundurai</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Attended a comprehensive workshop on first-aid measures, learning essential life-saving techniques and safety protocols for construction sites and emergency situations.
+                        </p>
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>
+                            <div>
+                                <h3 class="experience-title">Online Workshop on AutoCAD-2D</h3>
+                                <span class="experience-date">LEARN DELTA Platform</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Completed an online workshop on AutoCAD 2D, enhancing skills in computer-aided design and drafting for civil engineering applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="training" class="tab-content">
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h3 class="experience-title">Full Stack Development Training</h3>
+                                <span class="experience-date">Kongu Engineering College, Perundurai | 16/06/25 - 26/06/25</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Completed intensive training on full stack development, covering front-end and back-end technologies, database management, and web application deployment.
+                        </p>  
+                    </div>
+                    
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>    
+                            <div>
+                                <h3 class="experience-title">Revit Certification </h3>
+                                <span class="experience-date">Kongu Engineering College, Perundurai | 22/09/25 - 26/09/25</span>
+                            </div>
+                        </div>
+                        <p class="experience-description">
+                            Completed intensive Certification course on Autodesk Revit, mastering BIM techniques for architectural design, structural engineering, and MEP systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOMATHI</h3>
+                    <p>Civil Engineering Student passionate about sustainable construction and innovative technologies. Seeking challenging opportunities to apply technical skills in meaningful projects.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-arrow-right"></i> Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-arrow-right"></i> Profile</a></li>
+                        <li><a href="#" class="nav-link" data-page="education"><i class="fas fa-arrow-right"></i> Education</a></li>
+                        <li><a href="#" class="nav-link" data-page="skills"><i class="fas fa-arrow-right"></i> Skills</a></li>
+                        <li><a href="#" class="nav-link" data-page="projects"><i class="fas fa-arrow-right"></i> Projects</a></li>
+                        <li><a href="#" class="nav-link" data-page="papers"><i class="fas fa-arrow-right"></i> Papers</a></li>
+                        <li><a href="#" class="nav-link" data-page="experience"><i class="fas fa-arrow-right"></i> Experience</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>6374971210</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>gomathigandhi2005@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>https://github.com/GOMATHI18445</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Erode, Tamil Nadu</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Gomathi . All rights reserved. | Portfolio Resume - Civil Engineer</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Professional Portfolio</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Page navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const pageId = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show selected page
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Tab functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Skill bar animation
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 300);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => observer.observe(bar));
+            
+            // Print functionality
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+            
+            // Initialize first page
+            if (!document.querySelector('.page.active')) {
+                document.getElementById('home').classList.add('active');
+            }
+        });
+        
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
